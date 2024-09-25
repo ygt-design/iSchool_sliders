@@ -9,14 +9,14 @@ canvas {
 
 
 input[type = "range"] {
-  --c: black; /* active color */
-  --g: 5px; /* the gap */
-  --l: 1px; /* line thickness*/
-  --s: 12px; /* thumb size*/
+  --c: black;
+  --g: 5px;
+  --l: 1px; 
+  --s: 12px; 
 
    
   width: 200px;
-  height: var(--s); /* needed for Firefox*/
+  height: var(--s); 
   --_c: color-mix(in srgb, var(--c), #000 var(--p,0%));
   -webkit-appearance :none;
   -moz-appearance :none;
@@ -75,9 +75,6 @@ input[type="color" i] {
   inline-size: 30px;
   block-size: 30px;
   
-  /* Can set padding between outer circle and color swatch for Firefox here;
-   * it doesn't support a color-swarch-wrapper pseudoclass
-   */
   padding: 3px;
   border-width: 0px;
   border: none;
@@ -85,14 +82,12 @@ input[type="color" i] {
   background-color: white;
 }
 
-/* Affects area between outer circle and color swatch. Firefox doesn't have an equivalent. */
 input[type="color" i]::-webkit-color-swatch-wrapper {
   padding: 1px;
   border: none;
   border-color: white;
 }
 
-/* Affects the inner circle, i.e. the current color selection */
 input[type="color" i]::-webkit-color-swatch {
   border-radius: 50%;
 }
@@ -107,7 +102,6 @@ div {
   gap: 0.5rem;
 }
 
-/* file upload button */
 input[type="file"]::file-selector-button {
   border-radius: 4px;
   padding: 0 16px;

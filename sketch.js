@@ -237,6 +237,10 @@ function generateShape(shape) {
 }
 
 function cubicBezierEase(t, bezier) {
-  let [p1, p2, p3, p4] = bezier;
-  return 3 * (1 - t) * (1 - t) * t * p1 + 3 * (1 - t) * t * t * p2 + t * t * t;
+  if (t < 0.5) {
+    return 4 * t * t * t;
+  } else {
+    let f = 2 * t - 2;
+    return 0.5 * f * f * f + 1;
+  }
 }
