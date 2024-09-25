@@ -5,21 +5,28 @@ let radiusSlider,
   baseHoldTimeSlider,
   textSizeSlider,
   strokeWeightSlider;
-let radius = 150;
+let radius = 200;
 let distortionFactor = 0.5;
 let baseTransitionDuration = 30;
 let baseHoldTime = 30;
 let bezierEase = [0.075, 0.82, 0.165, 1];
 
 let polygonFillColorPicker, textColorPicker, strokeColorPicker;
-
 let polygonFillColor, textColor, strokeColor;
 let strokeWeightValue = 1;
+
+let customFont;
+let uploadedFont;
+let fontInput;
+
+function preload() {
+  customFont = loadFont("./fonts/SpaceMono-Regular.ttf"); // Adjust path to your default font file
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  radiusSlider = createSlider(50, 300, radius, 1);
+  radiusSlider = createSlider(10, 350, radius, 1);
   distortionFactorSlider = createSlider(0, 1, distortionFactor, 0.01);
   baseTransitionDurationSlider = createSlider(
     10,
@@ -36,17 +43,22 @@ function setup() {
   textColorPicker = createColorPicker("#000000");
   strokeColorPicker = createColorPicker("#000000");
 
-  radiusSlider.position(150, 10);
-  distortionFactorSlider.position(150, 40);
-  baseTransitionDurationSlider.position(150, 70);
-  baseHoldTimeSlider.position(150, 100);
-  textSizeSlider.position(150, 130);
-  strokeWeightSlider.position(150, 160);
+  radiusSlider.position(190, 10);
+  distortionFactorSlider.position(190, 40);
+  baseTransitionDurationSlider.position(190, 70);
+  baseHoldTimeSlider.position(190, 100);
+  textSizeSlider.position(190, 130);
+  strokeWeightSlider.position(190, 160);
 
-  polygonFillColorPicker.position(150, 190);
-  textColorPicker.position(150, 220);
-  strokeColorPicker.position(150, 250);
+  polygonFillColorPicker.position(190, 190);
+  textColorPicker.position(190, 220);
+  strokeColorPicker.position(190, 250);
 
+  // Create a file input for font upload
+  fontInput = createFileInput(handleFontUpload);
+  fontInput.position(190, 280);
+
+  textFont(customFont);
   textAlign(CENTER, BASELINE);
   textSize(24);
   stroke(0);
@@ -69,6 +81,9 @@ function setup() {
 function draw() {
   background(255);
 
+  // Use uploaded font if available, otherwise fall back to customFont
+  textFont(uploadedFont || customFont);
+
   push();
   textAlign(LEFT, BASELINE);
   textSize(13);
@@ -83,6 +98,7 @@ function draw() {
   text("Polygon Fill Color", 20, 205);
   text("Text Color", 20, 235);
   text("Stroke Color", 20, 265);
+  text("Upload Font", 20, 295);
   pop();
 
   radius = radiusSlider.value();
@@ -176,6 +192,15 @@ function draw() {
       }
     }
   });
+}
+
+// Function to handle font upload
+function handleFontUpload(file) {
+  if (file.type === "font") {
+    uploadedFont = loadFont(file.data);
+  } else {
+    console.log("Please upload a valid font file.");
+  }
 }
 
 function generateShape(shape) {

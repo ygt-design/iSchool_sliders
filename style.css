@@ -8,12 +8,13 @@ canvas {
 }
 
 
-input {
+input[type = "range"] {
   --c: black; /* active color */
   --g: 5px; /* the gap */
   --l: 1px; /* line thickness*/
   --s: 12px; /* thumb size*/
-  
+
+   
   width: 200px;
   height: var(--s); /* needed for Firefox*/
   --_c: color-mix(in srgb, var(--c), #000 var(--p,0%));
@@ -22,7 +23,7 @@ input {
   appearance :none;
   background: none;
   cursor: pointer;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 input:focus-visible,
@@ -62,16 +63,6 @@ input[type="range"]::-moz-range-thumb {
   }
 }
 
-/**/
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: grid;
-  gap: 40px;
-  place-content: center;
-  background: repeating-linear-gradient(-45deg, #fff 0 20px, #f9f9f9 0 40px)
-}
-
 input[type="color" i] {
   border-radius: 50%;
   inline-size: 30px;
@@ -82,13 +73,16 @@ input[type="color" i] {
    */
   padding: 3px;
   border-width: 0px;
-  border-style: solid;
-  border-color: rgb(153, 153, 153);
+  border: none;
+  border-color: white;
+  background-color: white;
 }
 
 /* Affects area between outer circle and color swatch. Firefox doesn't have an equivalent. */
 input[type="color" i]::-webkit-color-swatch-wrapper {
   padding: 1px;
+  border: none;
+  border-color: white;
 }
 
 /* Affects the inner circle, i.e. the current color selection */
@@ -104,4 +98,27 @@ div {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+/* file upload button */
+input[type="file"]::file-selector-button {
+  border-radius: 4px;
+  padding: 0 16px;
+  height: 30px;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+  margin-right: 16px;
+  transition: background-color 200ms;
+}
+
+/* file upload button hover state */
+input[type="file"]::file-selector-button:hover {
+  background-color: #f3f4f6;
+}
+
+/* file upload button active state */
+input[type="file"]::file-selector-button:active {
+  background-color: #e5e7eb;
 }
