@@ -19,8 +19,13 @@ let customFont;
 let uploadedFont;
 let fontInput;
 
+// Input boxes for top and bottom text
+let topTextInput, bottomTextInput;
+let topText = "iSchool";
+let bottomText = "institute";
+
 function preload() {
-  customFont = loadFont("./fonts/SpaceMono-Regular.ttf"); // Adjust path to your default font file
+  customFont = loadFont("./fonts/SpaceMono-Regular.ttf");
 }
 
 function setup() {
@@ -57,6 +62,15 @@ function setup() {
   // Create a file input for font upload
   fontInput = createFileInput(handleFontUpload);
   fontInput.position(190, 280);
+
+  // Create text input for top and bottom text
+  topTextInput = createInput(topText);
+  topTextInput.position(190, 310);
+  topTextInput.input(updateTopText);
+
+  bottomTextInput = createInput(bottomText);
+  bottomTextInput.position(190, 340);
+  bottomTextInput.input(updateBottomText);
 
   textFont(customFont);
   textAlign(CENTER, BASELINE);
@@ -99,6 +113,8 @@ function draw() {
   text("Text Color", 20, 235);
   text("Stroke Color", 20, 265);
   text("Upload Font", 20, 295);
+  text("Top Text", 20, 325);
+  text("Bottom Text", 20, 355);
   pop();
 
   radius = radiusSlider.value();
@@ -155,7 +171,7 @@ function draw() {
     noStroke();
     fill(textColor);
     textSize(textSizeValue);
-    text("iSchool", 0, 30);
+    text(topText, 0, 30); // Using topText variable
     pop();
 
     push();
@@ -169,7 +185,7 @@ function draw() {
     noStroke();
     fill(textColor);
     textSize(textSizeValue);
-    text("institute", 0, -12);
+    text(bottomText, 0, -12); // Using bottomText variable
     pop();
 
     if (shapeObj.isTransitioning) {
@@ -201,6 +217,16 @@ function handleFontUpload(file) {
   } else {
     console.log("Please upload a valid font file.");
   }
+}
+
+// Function to update top text from input
+function updateTopText() {
+  topText = this.value();
+}
+
+// Function to update bottom text from input
+function updateBottomText() {
+  bottomText = this.value();
 }
 
 function generateShape(shape) {

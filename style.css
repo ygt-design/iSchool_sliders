@@ -32,6 +32,7 @@ input[type = "range"] {
   }
 }
 
+
 input:focus-visible,
 input:hover{
   --p: 25%;
@@ -110,7 +111,7 @@ div {
 input[type="file"]::file-selector-button {
   border-radius: 4px;
   padding: 0 16px;
-  height: 30px;
+  height: 22px;
   cursor: pointer;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.16);
@@ -127,4 +128,22 @@ input[type="file"]::file-selector-button:hover {
 /* file upload button active state */
 input[type="file"]::file-selector-button:active {
   background-color: #e5e7eb;
+}
+
+
+.input-container {
+  position: relative;
+  margin: 20px;
+}
+
+/* Input field */
+.input-field {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  background-color: transparent;
 }
